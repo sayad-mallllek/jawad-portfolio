@@ -11,15 +11,6 @@ const StyledMainContainer = styled.main`
   & > header {
     margin-bottom: 100px;
     text-align: center;
-
-    a {
-      &:hover,
-      &:focus {
-        cursor: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='40' height='48' viewport='0 0 100 100' style='fill:black;font-size:24px;'><text y='50%'>⚡</text></svg>")
-            20 0,
-          auto;
-      }
-    }
   }
 
   footer {
@@ -211,7 +202,10 @@ export default PensievePage;
 export const pageQuery = graphql`
   {
     allMarkdownRemark(
-      filter: { fileAbsolutePath: { regex: "/content/posts/" }, frontmatter: { draft: { ne: true } } }
+      filter: {
+        fileAbsolutePath: { regex: "/content/posts/" }
+        frontmatter: { draft: { ne: true } }
+      }
       sort: { fields: [frontmatter___date], order: DESC }
     ) {
       edges {
